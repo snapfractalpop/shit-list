@@ -43,4 +43,10 @@ background.getActiveTabHostname = function () {
   }.bind(this));
 }.bind(background);
 
+background.isActiveTabShitListed = function () {
+  return this.getActiveTabHostname().then(function (hostname) {
+    return this.getShitList().isShitListed(hostname);
+  }.bind(this));
+}.bind(background);
+
 module.exports = background;
