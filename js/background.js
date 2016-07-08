@@ -49,4 +49,16 @@ background.isActiveTabShitListed = function () {
   }.bind(this));
 }.bind(background);
 
+background.updateIcon = function () {
+  return this.isActiveTabShitListed().then(function (isShitListed) {
+    chrome.browserAction.setIcon({
+      path: isShitListed ? background.ACTIVE_ICON : background.INACTIVE_ICON
+    });
+
+    chrome.browserAction.setTitle({
+      title: isShitListed ? background.ACTIVE_TOOLTIP : background.INACTIVE_TOOLTIP
+    });
+  });;
+}.bind(background);
+
 module.exports = background;
