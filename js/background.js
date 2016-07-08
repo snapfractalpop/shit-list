@@ -31,4 +31,8 @@ background.getShitList = function (shitList) {
   return this._shitList;
 }.bind(background);
 
+background.getHostnameFromTab = function (tab) {
+  return new URL(tab.url).hostname;
+}.bind(background);
+
 module.exports = background;
