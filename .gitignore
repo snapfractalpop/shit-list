@@ -3,3 +3,6 @@ js/libs
 
 #ignore node modules
 node_modules/
+
+#ignore minified build output
+js/*.min.js
