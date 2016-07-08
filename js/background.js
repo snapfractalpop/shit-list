@@ -80,4 +80,10 @@ background.handleBrowserActionClick = function (tab) {
   }.bind(this));
 }.bind(background);
 
+background.handleTabUpdated = function (tabId, changeInfo, tab) {
+  if (changeInfo.url) {
+    this.updateIcon();
+  }
+}.bind(background);
+
 module.exports = background;
