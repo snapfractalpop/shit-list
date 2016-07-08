@@ -23,4 +23,12 @@ background.ACTIVE_ICON = {
 background.INACTIVE_TOOLTIP = "Add this site to your shit list.";
 background.ACTIVE_TOOLTIP = "Remove this site from your shit list.";
 
+background.setShitList = function (shitList) {
+  this._shitList = shitList;
+}.bind(background);
+
+background.getShitList = function (shitList) {
+  return this._shitList;
+}.bind(background);
+
 module.exports = background;
