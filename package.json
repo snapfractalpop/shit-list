@@ -1,0 +1,13 @@
+{
+  "name": "shit-list",
+  "version": "0.0.1",
+  "description": "A shit list for the web.",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "mocha"
+  },
+  "author": "snapfractalpop",
+  "license": "ISC"
+}
