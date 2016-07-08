@@ -72,4 +72,12 @@ background.updateAllAnchors = function () {
   });
 }.bind(background);
 
+background.handleBrowserActionClick = function (tab) {
+  var hostname = this.getHostnameFromTab(tab);
+  return this.getShitList().toggle(hostname).then(function () {
+    this.updateIcon();
+    this.updateAllAnchors();
+  }.bind(this));
+}.bind(background);
+
 module.exports = background;
