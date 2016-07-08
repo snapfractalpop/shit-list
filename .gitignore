@@ -1,0 +1,5 @@
+# ignore javascript libraries
+js/libs
+
+#ignore node modules
+node_modules/
