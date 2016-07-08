@@ -61,4 +61,15 @@ background.updateIcon = function () {
   });;
 }.bind(background);
 
+background.updateAllAnchors = function () {
+  return new Promise(function (resolve, reject) {
+    chrome.tabs.query({}, function (tabs) {
+      for (var i = 0; i < tabs.length; i++) {
+        chrome.tabs.sendMessage(tabs[i].id, "update");
+      }
+      resolve();
+    });
+  });
+}.bind(background);
+
 module.exports = background;
