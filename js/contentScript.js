@@ -14,4 +14,8 @@ contentScript.handleMessage = function (message) {
   }
 }.bind(contentScript);
 
+contentScript.listen = function () {
+  chrome.extension.onMessage.addListener(this.handleMessage);
+}.bind(contentScript);
+
 module.exports = contentScript;
