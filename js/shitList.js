@@ -32,4 +32,10 @@ shitList.isShitListed = function (hostname) {
   });
 }.bind(shitList);
 
+shitList.toggle = function (hostname) {
+  return this.isShitListed(hostname).then(function (isShitListed) {
+    isShitListed ? this.deShitList(hostname) : this.shitList(hostname);
+  }.bind(this));
+}.bind(shitList);
+
 module.exports = shitList;
