@@ -38,4 +38,12 @@ shitList.toggle = function (hostname) {
   }.bind(this));
 }.bind(shitList);
 
+shitList.getAll = function (callback) {
+  return new Promise(function (resolve, reject) {
+    chrome.storage.sync.get(null, function (results) {
+      resolve(Object.keys(results));
+    });
+  });
+}.bind(shitList);
+
 module.exports = shitList;
