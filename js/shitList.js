@@ -20,4 +20,16 @@ shitList.deShitList = function (hostname) {
   });
 }.bind(shitList);
 
+shitList.isShitListed = function (hostname) {
+  return new Promise(function (resolve, reject) {
+    chrome.storage.sync.get(hostname, function (results) {
+      if (results[hostname]) {
+        resolve(true);
+      } else {
+        resolve(false);
+      }
+    });
+  });
+}.bind(shitList);
+
 module.exports = shitList;
