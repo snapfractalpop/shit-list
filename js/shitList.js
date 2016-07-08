@@ -11,4 +11,13 @@ shitList.shitList = function (hostname) {
   });
 }.bind(shitList);
 
+shitList.deShitList = function (hostname) {
+
+  return new Promise(function (resolve, reject) {
+    chrome.storage.sync.remove(hostname, function (results) {
+      resolve();
+    });
+  });
+}.bind(shitList);
+
 module.exports = shitList;
