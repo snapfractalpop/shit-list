@@ -35,4 +35,12 @@ background.getHostnameFromTab = function (tab) {
   return new URL(tab.url).hostname;
 }.bind(background);
 
+background.getActiveTabHostname = function () {
+  return new Promise(function (resolve, reject) {
+    chrome.tabs.query({active: true, lastFocusedWindow: true}, function(tab) {
+      resolve(this.getHostnameFromTab(tab[0]));
+    }.bind(this));
+  }.bind(this));
+}.bind(background);
+
 module.exports = background;
