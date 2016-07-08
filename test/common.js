@@ -13,3 +13,9 @@ chai.use(chaiAsPromised);
 
 global.jsdom = require('jsdom');
 global.$ = require('jquery')(jsdom.jsdom().parentWindow);
+
+chrome.extension = {
+  onMessage: {
+    addListener: sinon.stub()
+  }
+};
