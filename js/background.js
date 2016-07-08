@@ -80,16 +80,16 @@ background.handleBrowserActionClick = function (tab) {
   }.bind(this));
 }.bind(background);
 
-background.listen = function () {
-  chrome.tabs.onActivated.addListener(this.updateIcon);
-  chrome.tabs.onUpdated.addListener(this.handleTabUpdated);
-  chrome.browserAction.onClicked.addListener(this.handleBrowserActionClick);
-}.bind(background);
-
 background.handleTabUpdated = function (tabId, changeInfo, tab) {
   if (changeInfo.url) {
     this.updateIcon();
   }
+}.bind(background);
+
+background.listen = function () {
+  chrome.tabs.onActivated.addListener(this.updateIcon);
+  chrome.tabs.onUpdated.addListener(this.handleTabUpdated);
+  chrome.browserAction.onClicked.addListener(this.handleBrowserActionClick);
 }.bind(background);
 
 module.exports = background;
