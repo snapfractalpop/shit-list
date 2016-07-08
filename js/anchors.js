@@ -29,4 +29,14 @@ anchors.updateAnchor = function ($a) {
   });
 }.bind(anchors);
 
+anchors.updateAll = function () {
+  var promises = [];
+
+  $('a').each(function (index, element) {
+    promises.push(anchors.updateAnchor($(element)));
+  });
+
+  return Promise.all(promises);
+}.bind(anchors);
+
 module.exports = anchors;
