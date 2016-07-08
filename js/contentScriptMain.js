@@ -3,6 +3,7 @@ var anchors = require('./anchors.js');
 var contentScript = require('./contentScript.js');
 
 anchors.setShitList(shitList);
-contentScript.setAnchors(anchors);
+anchors.updateAll();
 
+contentScript.setAnchors(anchors);
 contentScript.listen();
