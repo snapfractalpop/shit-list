@@ -8,4 +8,10 @@ contentScript.getAnchors = function (anchors) {
   return this._anchors;
 }.bind(contentScript);
 
+contentScript.handleMessage = function (message) {
+  if (message == 'update') {
+    this.getAnchors().updateAll();
+  }
+}.bind(contentScript);
+
 module.exports = contentScript;
