@@ -89,9 +89,13 @@ Background.prototype.handleTabUpdated = function (tabId, changeInfo, tab) {
 };
 
 Background.prototype.listen = function () {
-  chrome.tabs.onActivated.addListener(this.updateIcon.bind(this));
-  chrome.tabs.onUpdated.addListener(this.handleTabUpdated.bind(this));
-  chrome.browserAction.onClicked.addListener(this.handleBrowserActionClick.bind(this));
+  var updateIcon = this.updateIcon.bind(this);
+  var handleTabUpdated = this.handleTabUpdated.bind(this);
+  var handleBrowserActionClick = this.handleBrowserActionClick.bind(this);
+
+  chrome.tabs.onActivated.addListener(updateIcon);
+  chrome.tabs.onUpdated.addListener(handleTabUpdated);
+  chrome.browserAction.onClicked.addListener(handleBrowserActionClick);
 };
 
 module.exports = Background;

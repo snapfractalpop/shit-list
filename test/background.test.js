@@ -264,27 +264,42 @@ describe('Background', function () {
 
   describe('#listen', function () {
     beforeEach(function () {
-      background.updateIcon = {};
-      background.handleTabUpdated = {};
-      background.handleBrowserActionClick = {};
+      background.updateIcon = sinon.stub();
+      background.handleTabUpdated = sinon.stub();
+      background.handleBrowserActionClick = sinon.stub();
     });
 
-    it('calls update icon tab activation', function () {
+    it('calls bound updateIcon', function () {
       var spy = chrome.tabs.onActivated.addListener;
+      spy.reset();
       background.listen();
-      expect(spy).to.have.been.calledWith(background.updateIcon);
+
+      var callback = spy.args[0][0];
+      callback();
+
+      expect(background.updateIcon).to.have.been.calledOn(background);
     });
 
-    it('handles tab updates', function () {
+    it('calls bound handleTabUpdated', function () {
       var spy = chrome.tabs.onUpdated.addListener;
+      spy.reset();
       background.listen();
-      expect(spy).to.have.been.calledWith(background.handleTabUpdated);
+
+      var callback = spy.args[0][0];
+      callback();
+
+      expect(background.handleTabUpdated).to.have.been.calledOn(background);
     });
 
-    it('handles browser action clicks', function () {
+    it('calls bound handleBrowserActionClick', function () {
       var spy = chrome.browserAction.onClicked.addListener;
+      spy.reset();
       background.listen();
-      expect(spy).to.have.been.calledWith(background.handleBrowserActionClick);
+
+      var callback = spy.args[0][0];
+      callback();
+
+      expect(background.handleBrowserActionClick).to.have.been.calledOn(background);
     });
   });
 });

@@ -50,13 +50,18 @@ describe('contentScript', function () {
 
   describe('#listen', function () {
     beforeEach(function () {
-      contentScript.handleMessage = {};
+      contentScript.handleMessage = sinon.stub();
     });
 
-    it('handles messages', function () {
+    it('calls bound handleMessage', function () {
       var spy = chrome.extension.onMessage.addListener;
+      spy.reset();
       contentScript.listen();
-      expect(spy).to.have.been.calledWith(contentScript.handleMessage);
+
+      var callback = spy.args[0][0];
+      callback();
+
+      expect(contentScript.handleMessage).to.have.been.calledOn(contentScript);
     });
   });
 });

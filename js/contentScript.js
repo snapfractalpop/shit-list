@@ -15,7 +15,8 @@ ContentScript.prototype.handleMessage = function (message) {
 };
 
 ContentScript.prototype.listen = function () {
-  chrome.extension.onMessage.addListener(this.handleMessage.bind(this));
+  var handleMessage = this.handleMessage.bind(this);
+  chrome.extension.onMessage.addListener(handleMessage);
 };
 
 module.exports = ContentScript;
