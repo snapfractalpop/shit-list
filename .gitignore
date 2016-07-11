@@ -1,8 +1,9 @@
 # ignore javascript libraries
-js/libs
+js/libs/
 
 #ignore node modules
 node_modules/
 
-#ignore minified build output
+#ignore build output
 js/*.min.js
+build/
