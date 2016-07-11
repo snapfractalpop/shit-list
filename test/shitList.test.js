@@ -1,7 +1,10 @@
-var shitList = require('../js/shitList.js');
+var ShitList = require('../js/shitList.js');
 
 describe('ShitList', function () {
+  var shitList;
+
   beforeEach(function (done) {
+    shitList = new ShitList();
     chrome.storage.sync.clear(done);
   });
 

@@ -1,4 +1,5 @@
-var background = require('../js/background.js');
+var Background = require('../js/background.js');
+var background;
 
 function setup() {
   var shitList = {
@@ -9,21 +10,25 @@ function setup() {
 };
 
 
-describe('background', function () {
+describe('Background', function () {
+  beforeEach(function () {
+    background = new Background();
+  });
+
   it('has an inactive icon', function () {
-    expect(background.INACTIVE_ICON).to.exist;
+    expect(Background.INACTIVE_ICON).to.exist;
   });
 
   it('has an active icon', function () {
-    expect(background.ACTIVE_ICON).to.exist;
+    expect(Background.ACTIVE_ICON).to.exist;
   });
 
   it('has an inactive tooltip', function () {
-    expect(background.INACTIVE_TOOLTIP).to.exist;
+    expect(Background.INACTIVE_TOOLTIP).to.exist;
   });
 
   it('has an active tooltip', function () {
-    expect(background.ACTIVE_TOOLTIP).to.exist;
+    expect(Background.ACTIVE_TOOLTIP).to.exist;
   });
 
   describe('#setShitList', function () {
@@ -73,7 +78,7 @@ describe('background', function () {
     });
 
     it('resolves the hostname of the active tab', function () {
-      background.getHostnameFromTab.returns('example.com');
+      background.getHostnameFromTab = sinon.stub().returns('example.com');
       var promise = background.getActiveTabHostname();
       return expect(promise).to.eventually.equal('example.com');
     });
@@ -132,7 +137,7 @@ describe('background', function () {
     it('sets inactive icon when not shitListed', function () {
       return background.updateIcon().then(function () {
         expect(chrome.browserAction.setIcon).to.have.been.calledWith({
-          path: background.INACTIVE_ICON
+          path: Background.INACTIVE_ICON
         });
       });
     });
@@ -142,7 +147,7 @@ describe('background', function () {
 
       return background.updateIcon().then(function () {
         expect(chrome.browserAction.setIcon).to.have.been.calledWith({
-          path: background.ACTIVE_ICON
+          path: Background.ACTIVE_ICON
         });
       });
     });
@@ -150,7 +155,7 @@ describe('background', function () {
     it('sets inactive tooltip when not shitListed', function () {
       return background.updateIcon().then(function () {
         expect(chrome.browserAction.setTitle).to.have.been.calledWith({
-          title: background.INACTIVE_TOOLTIP
+          title: Background.INACTIVE_TOOLTIP
         });
       });
     });
@@ -160,7 +165,7 @@ describe('background', function () {
 
       return background.updateIcon().then(function () {
         expect(chrome.browserAction.setTitle).to.have.been.calledWith({
-          title: background.ACTIVE_TOOLTIP
+          title: Background.ACTIVE_TOOLTIP
         });
       });
     });
@@ -200,6 +205,7 @@ describe('background', function () {
     var tab;
 
     beforeEach(function () {
+      setup();
       tab = {};
       background.updateIcon = sinon.stub().resolves();
       background.updateAllAnchors = sinon.stub().resolves();
@@ -211,13 +217,14 @@ describe('background', function () {
     });
 
     it('calls getHostnameFromTab with active tab', function () {
+      background.getHostnameFromTab = sinon.stub();
       background.handleBrowserActionClick(tab);
       expect(background.getHostnameFromTab).to.have.been.calledWith(tab);
     });
 
     it('toggles the hostname on the shitList', function () {
       var shitList = background.getShitList();
-      background.getHostnameFromTab.returns('example.com');
+      background.getHostnameFromTab = sinon.stub().returns('example.com');
       background.handleBrowserActionClick(tab);
       expect(shitList.toggle).to.have.been.calledWith('example.com');
     });

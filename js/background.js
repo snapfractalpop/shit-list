@@ -1,6 +1,6 @@
-var background = {};
+var Background = function () {};
 
-background.INACTIVE_ICON = {
+Background.INACTIVE_ICON = {
   '16': 'images/poop-inactive16.png',
   '19': 'images/poop-inactive19.png',
   '32': 'images/poop-inactive32.png',
@@ -10,7 +10,7 @@ background.INACTIVE_ICON = {
   '128': 'images/poop-inactive128.png'
 };
 
-background.ACTIVE_ICON = {
+Background.ACTIVE_ICON = {
   '16': 'images/poop16.png',
   '19': 'images/poop19.png',
   '32': 'images/poop32.png',
@@ -20,48 +20,50 @@ background.ACTIVE_ICON = {
   '128': 'images/poop128.png'
 };
 
-background.INACTIVE_TOOLTIP = "Add this site to your shit list.";
-background.ACTIVE_TOOLTIP = "Remove this site from your shit list.";
+Background.INACTIVE_TOOLTIP = "Add this site to your shit list.";
+Background.ACTIVE_TOOLTIP = "Remove this site from your shit list.";
 
-background.setShitList = function (shitList) {
+Background.prototype.setShitList = function (shitList) {
   this._shitList = shitList;
-}.bind(background);
+};
 
-background.getShitList = function (shitList) {
+Background.prototype.getShitList = function (shitList) {
   return this._shitList;
-}.bind(background);
+};
 
-background.getHostnameFromTab = function (tab) {
+Background.prototype.getHostnameFromTab = function (tab) {
   return new URL(tab.url).hostname;
-}.bind(background);
+};
 
-background.getActiveTabHostname = function () {
+Background.prototype.getActiveTabHostname = function () {
   return new Promise(function (resolve, reject) {
     chrome.tabs.query({active: true, lastFocusedWindow: true}, function(tab) {
       resolve(this.getHostnameFromTab(tab[0]));
     }.bind(this));
   }.bind(this));
-}.bind(background);
+};
 
-background.isActiveTabShitListed = function () {
+Background.prototype.isActiveTabShitListed = function () {
   return this.getActiveTabHostname().then(function (hostname) {
     return this.getShitList().isShitListed(hostname);
   }.bind(this));
-}.bind(background);
+};
 
-background.updateIcon = function () {
+Background.prototype.updateIcon = function () {
   return this.isActiveTabShitListed().then(function (isShitListed) {
     chrome.browserAction.setIcon({
-      path: isShitListed ? background.ACTIVE_ICON : background.INACTIVE_ICON
+      path: isShitListed ?
+        Background.ACTIVE_ICON : Background.INACTIVE_ICON
     });
 
     chrome.browserAction.setTitle({
-      title: isShitListed ? background.ACTIVE_TOOLTIP : background.INACTIVE_TOOLTIP
+      title: isShitListed ?
+        Background.ACTIVE_TOOLTIP : Background.INACTIVE_TOOLTIP
     });
   });;
-}.bind(background);
+};
 
-background.updateAllAnchors = function () {
+Background.prototype.updateAllAnchors = function () {
   return new Promise(function (resolve, reject) {
     chrome.tabs.query({}, function (tabs) {
       for (var i = 0; i < tabs.length; i++) {
@@ -70,26 +72,26 @@ background.updateAllAnchors = function () {
       resolve();
     });
   });
-}.bind(background);
+};
 
-background.handleBrowserActionClick = function (tab) {
+Background.prototype.handleBrowserActionClick = function (tab) {
   var hostname = this.getHostnameFromTab(tab);
   return this.getShitList().toggle(hostname).then(function () {
     this.updateIcon();
     this.updateAllAnchors();
   }.bind(this));
-}.bind(background);
+};
 
-background.handleTabUpdated = function (tabId, changeInfo, tab) {
+Background.prototype.handleTabUpdated = function (tabId, changeInfo, tab) {
   if (changeInfo.url) {
     this.updateIcon();
   }
-}.bind(background);
+};
 
-background.listen = function () {
-  chrome.tabs.onActivated.addListener(this.updateIcon);
-  chrome.tabs.onUpdated.addListener(this.handleTabUpdated);
-  chrome.browserAction.onClicked.addListener(this.handleBrowserActionClick);
-}.bind(background);
+Background.prototype.listen = function () {
+  chrome.tabs.onActivated.addListener(this.updateIcon.bind(this));
+  chrome.tabs.onUpdated.addListener(this.handleTabUpdated.bind(this));
+  chrome.browserAction.onClicked.addListener(this.handleBrowserActionClick.bind(this));
+};
 
-module.exports = background;
+module.exports = Background;

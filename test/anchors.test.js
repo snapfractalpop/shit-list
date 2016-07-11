@@ -1,5 +1,6 @@
-var anchors = require('../js/anchors.js');
+var Anchors = require('../js/anchors.js');
 var $a;
+var anchors;
 
 function setup() {
   var shitList = {
@@ -11,6 +12,10 @@ function setup() {
 };
 
 describe('Anchors', function () {
+  beforeEach(function () {
+    anchors = new Anchors();
+  });
+
   describe('#setShitList', function () {
     it('sets the shitList', function () {
       var shitList = {};
@@ -38,7 +43,7 @@ describe('Anchors', function () {
   });
 
   describe('#updateAnchor', function () {
-    before(setup);
+    beforeEach(setup);
 
     it('returns a promise', function () {
       var promise = anchors.updateAnchor($a);

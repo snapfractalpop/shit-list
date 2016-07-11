@@ -1,21 +1,21 @@
-var contentScript = {};
+var ContentScript = function () {};
 
-contentScript.setAnchors = function (anchors) {
+ContentScript.prototype.setAnchors = function (anchors) {
   this._anchors = anchors;
-}.bind(contentScript);
+};
 
-contentScript.getAnchors = function (anchors) {
+ContentScript.prototype.getAnchors = function (anchors) {
   return this._anchors;
-}.bind(contentScript);
+};
 
-contentScript.handleMessage = function (message) {
+ContentScript.prototype.handleMessage = function (message) {
   if (message == 'update') {
     this.getAnchors().updateAll();
   }
-}.bind(contentScript);
+};
 
-contentScript.listen = function () {
-  chrome.extension.onMessage.addListener(this.handleMessage);
-}.bind(contentScript);
+ContentScript.prototype.listen = function () {
+  chrome.extension.onMessage.addListener(this.handleMessage.bind(this));
+};
 
-module.exports = contentScript;
+module.exports = ContentScript;

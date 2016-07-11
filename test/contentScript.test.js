@@ -1,4 +1,5 @@
-var contentScript = require('../js/contentScript.js');
+var ContentScript = require('../js/contentScript.js');
+var contentScript;
 
 function setup() {
   var anchors = {
@@ -8,6 +9,10 @@ function setup() {
 };
 
 describe('contentScript', function () {
+  beforeEach(function () {
+    contentScript = new ContentScript();
+  });
+
   describe('#setAnchors', function () {
     it('sets anchors', function () {
       var anchors = {};

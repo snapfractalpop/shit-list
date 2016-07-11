@@ -1,5 +1,8 @@
-var shitList = require('./shitList.js');
-var background = require('./background.js');
+var ShitList = require('./shitList.js');
+var Background = require('./background.js');
+
+var shitList = new ShitList();
+var background = new Background();
 
 background.setShitList(shitList);
 
