@@ -7,3 +7,6 @@ node_modules/
 #ignore build output
 js/*.min.js
 build/
+
+#ignore generated images
+images/

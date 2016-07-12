@@ -1,23 +1,23 @@
 var Background = function () {};
 
 Background.INACTIVE_ICON = {
-  '16': 'images/poop-inactive16.png',
-  '19': 'images/poop-inactive19.png',
-  '32': 'images/poop-inactive32.png',
-  '38': 'images/poop-inactive38.png',
-  '48': 'images/poop-inactive48.png',
-  '64': 'images/poop-inactive38.png',
-  '128': 'images/poop-inactive128.png'
+  '16': 'images/icon-inactive16.png',
+  '19': 'images/icon-inactive19.png',
+  '32': 'images/icon-inactive32.png',
+  '38': 'images/icon-inactive38.png',
+  '48': 'images/icon-inactive48.png',
+  '64': 'images/icon-inactive38.png',
+  '128': 'images/icon-inactive128.png'
 };
 
 Background.ACTIVE_ICON = {
-  '16': 'images/poop16.png',
-  '19': 'images/poop19.png',
-  '32': 'images/poop32.png',
-  '38': 'images/poop38.png',
-  '48': 'images/poop48.png',
-  '64': 'images/poop64.png',
-  '128': 'images/poop128.png'
+  '16': 'images/icon-active16.png',
+  '19': 'images/icon-active19.png',
+  '32': 'images/icon-active32.png',
+  '38': 'images/icon-active38.png',
+  '48': 'images/icon-active48.png',
+  '64': 'images/icon-active64.png',
+  '128': 'images/icon-active128.png'
 };
 
 Background.INACTIVE_TOOLTIP = "Add this site to your shit list.";

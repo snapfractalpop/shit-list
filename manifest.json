@@ -3,25 +3,25 @@
 
   "name": "Shit List",
   "description": "A shit list for the web.",
-  "version": "0.0.8",
+  "version": "0.0.9",
   "icons": {
-      "16": "images/poop16.png",
-      "19": "images/poop19.png",
-      "32": "images/poop32.png",
-      "38": "images/poop38.png",
-      "48": "images/poop48.png",
-      "64": "images/poop64.png",
-      "128": "images/poop128.png"
+      "16": "images/cursor16.png",
+      "19": "images/cursor19.png",
+      "32": "images/cursor32.png",
+      "38": "images/cursor38.png",
+      "48": "images/cursor48.png",
+      "64": "images/cursor64.png",
+      "128": "images/cursor128.png"
   },
   "browser_action": {
     "default_icon": {
-      "16": "images/poop-inactive16.png",
-      "19": "images/poop-inactive19.png",
-      "32": "images/poop-inactive32.png",
-      "38": "images/poop-inactive38.png",
-      "48": "images/poop-inactive48.png",
-      "64": "images/poop-inactive64.png",
-      "128": "images/poop-inactive128.png"
+      "16": "images/icon-inactive16.png",
+      "19": "images/icon-inactive19.png",
+      "32": "images/icon-inactive32.png",
+      "38": "images/icon-inactive38.png",
+      "48": "images/icon-inactive48.png",
+      "64": "images/icon-inactive64.png",
+      "128": "images/icon-inactive128.png"
     },
     "default_title": "Add this site to your shit list."
   },
@@ -51,7 +51,7 @@
     "storage"
   ],
   "web_accessible_resources": [
-    "images/poop64.png"
+    "images/cursor64.png"
   ],
   "options_ui": {
     "page": "options.html",
