@@ -8,6 +8,7 @@ zip build/shitList-release.zip ./manifest.json
 zip -r build/shitList-release.zip ./css
 zip -r build/shitList-release.zip ./images
 zip -r build/shitList-release.zip ./js/libs
+zip build/shitList-release.zip ./options.html
 zip build/shitList-release.zip ./js/backgroundBundle.min.js
 zip build/shitList-release.zip ./js/contentScriptBundle.min.js
 zip build/shitList-release.zip ./js/optionsBundle.min.js
