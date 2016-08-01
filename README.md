@@ -19,10 +19,13 @@ Ads power the web by incentivizing content creation with monetization strategies
     * nodejs
     * npm
     * jQuery
+    * browserify
+    * uglify-js
   2. Clone the project
     * ```git clone https://github.com/snapfractalpop/shit-list```
     * ```cd shit-list```
   3. Install dependencies
+    * ```npm install -g browserify uglify-js```
     * ```npm install```
   4. Add jquery
     * Add jquery to js/libs/ folder in project root (mkdir libs/ if necessary)
