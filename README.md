@@ -39,7 +39,7 @@ Ads power the web by incentivizing content creation with monetization strategies
 
 ## Tests
 
-1. Install as above (through step 4)
+1. Install as above (through step 5)
 2. Run tests
   * ```mocha``` or ```npm test```
 3. Watch nyan cat nyan it's way across the screen
