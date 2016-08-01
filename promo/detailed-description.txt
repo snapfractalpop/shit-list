@@ -5,3 +5,6 @@ Tired of hunting down those pesky auto-play videos? Sick of ad-saturated website
 Shit list works by remembering the hostnames of the sites that offend you. Links to your shit-listed sites will have a shit indicator to remind you not to click.
 
 Shit list does not prevent you from visiting sites. It merely serves as an opt-in mild deterrent. If we deny these types of websites our traffic, we can decrease their revenue, and make the web less shitty.
+
+Shit list is open source, so feel free to browse the code at https://github.com/snapfractalpop/shit-list
+or fork the project and make a pull request.

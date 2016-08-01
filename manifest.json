@@ -3,7 +3,7 @@
 
   "name": "Shit List",
   "description": "A shit list for the web.",
-  "version": "0.0.9",
+  "version": "0.1.0",
   "icons": {
       "16": "images/cursor16.png",
       "19": "images/cursor19.png",
