@@ -1,0 +1,45 @@
+l = 0; n = 2;
+E[collisions] = 1
+
+l = 0; n = 3;
+E[collisions] = 3
+
+l = 0; n = 4;
+E[collisions] = 6
+
+l = 0; n = 5;
+E[collisions] = 10
+
+l = 0; n = n;
+E[collisions] = n * (n - 1) / 2
+
+l = 0; n = 1,000,000,000;
+E[collisions] = 499,999,999,500,000,000
+
+l = 1; n = 2;
+E[collisions] = 1 / 64
+
+l = 1; n = 3;
+E[collisions] = 3 / 64
+
+l = 1; n = 4;
+E[collisions] = 6 / 64
+
+l = 0; n = n;
+E[collisions] = n * (n - 1) / (2 * 64 ^ l)
+
+
+n * (n - 1) / (2 * 64 ^ l) < p
+n * (n - 1) / p < (2 * 64 ^ l)
+n * (n - 1) / (2 * p) < 64 ^ l
+log(n * (n - 1) / (2 * p) < l * log(64)
+
+****************************************
+l > log(n * (n - 1) / (2 * p)) / log(64)
+****************************************
+
+n = 1,000,000,000
+E[collisions] < 0.01;
+l = ?
+
+l > 

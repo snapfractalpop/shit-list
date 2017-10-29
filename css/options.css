@@ -1,0 +1,6 @@
+ul.list > li {
+  list-style: url('chrome-extension://__MSG_@@extension_id__/images/poop16.png');
+  /*
+  list-style: none;
+  */
+}
